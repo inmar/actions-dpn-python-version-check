@@ -1,10 +1,22 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Version Conflict Check'
+description: 'Check if the version already exists in the python package server'
+author: 'bobby.ward@inmar.com'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  pypi_hostname:
+    description: 'Hostname of the pypi server'
+    required: true
+  pypi_username:
+    description: 'Username for the pypi server'
+    required: true
+  pypi_password:
+    description: 'Password for the pypi server'
+    required: true
+  package_name:
+    description: 'Name of the package'
+    required: true
+  version:
+    description: 'The version to check for'
+    required: true
 runs:
   using: 'node12'
   main: 'lib/main.js'
