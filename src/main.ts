@@ -38,7 +38,7 @@ async function run() {
         json: true
       };
 
-    const url: string = `https://${pypi_hostname}/api/package/dpn_events_python/`;
+    const url: string = `https://${pypi_hostname}/api/package/${package_name}/`;
     core.debug(`Fetching url: ${url}`);
 
     const resp = await requests.get(url, request_options);
