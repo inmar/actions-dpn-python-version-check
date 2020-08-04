@@ -18,6 +18,9 @@ inputs:
     description: 'The version to check for'
   use_package_version:
     description: 'Use the version returned from setup.py'
+  package_directory:
+    description: 'Where the package lives in the repository'
+    default: '.'
 runs:
   using: 'node12'
   main: 'lib/main.js'
