@@ -9,14 +9,16 @@ async function run() {
     const pypi_username: string = core.getInput("pypi_username");
     const pypi_password: string = core.getInput("pypi_password");
     const package_name: string = core.getInput("package_name");
+    const package_directory: string = core.getInput("package_directory");
 
     const use_package_version: string = core.getInput("use_package_version");
     var version: string = core.getInput("version");
 
     if (use_package_version == "true") {
       var output: string = "";
+      var setup_py = package_directory.replace(/\/+$/g, '') + '/setup.py'
 
-      await exec.exec('python', ['setup.py', '--version'], {
+      await exec.exec('python', [setup_py, '--version'], {
         listeners: {
           stdout: (data: Buffer) => {
             output += data.toString();
@@ -26,7 +28,7 @@ async function run() {
 
       version = output.trim();
 
-      core.info(`Using version from setup.py: ${version}`);
+      core.info(`Using version from ${setup_py}: ${version}`);
     }
 
     if (!version) {
